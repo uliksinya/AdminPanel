@@ -1,0 +1,21 @@
+.normal{
+  background-color: white;
+  border: 1px solid #5AA2DC;
+  color: #5AA2DC;
+  width: 169px;
+  height: 38px;
+  margin-right: 16px;
+  border-radius: 10px;
+  font-family: var(--font-inter);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: center;
+  text-transform: uppercase;
+}
+.active{
+  background-color: #5AA2DC;
+  border: none;
+  color:  white;
+}

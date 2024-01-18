@@ -1,0 +1,22 @@
+.content_header{
+  width: 1581px;
+  height: 82px;
+  background-color: white;
+  margin-top: 10px;
+  margin-left: 27px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.content_header h2{
+  font-family: var(--font-inter);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #5AA2DC;
+  margin-left: 18px;
+  margin-top: 6px;
+}

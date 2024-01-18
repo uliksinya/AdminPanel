@@ -1,0 +1,42 @@
+.text {
+  font-family: var(--font-bebas);
+}
+.header{
+  width: 1636px;
+  height: 87px;
+  border-top: 1px solid #F1EFEF;
+  border-bottom: 1px solid #F1EFEF;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+}
+.datetime{
+  display: flex;
+  align-items: center;
+}
+.header span{
+  font-family: var(--font-inter);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  color: #053772;
+}
+.time{
+  margin-left: 32px;
+}
+.date{
+  margin-left: 30px;
+}
+.admin{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 47px;
+}
+#admin_logo{
+  width: 37px;
+  height: 37px;
+}
