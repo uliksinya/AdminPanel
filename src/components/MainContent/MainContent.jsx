@@ -2,6 +2,7 @@ import styles from "./MainContent.module.scss";
 import LeftArr from "../../assets/img/left-arr.svg";
 import RightArr from "../../assets/img/right-arr.svg";
 import {useState} from "react";
+
 export const MainContent = () => {
     const [pageCount, setPageCount] = useState(1);
     function pageForward(){
@@ -17,16 +18,6 @@ export const MainContent = () => {
     }
     return(
         <div className={styles.main_container}>
-            {/*<div className={styles.main_container_header}>*/}
-            {/*    <div id={styles.name}>Наименование</div>*/}
-            {/*    <div id={styles.chapter}>Раздел</div>*/}
-            {/*    <div id={styles.services}>Услуги</div>*/}
-            {/*    <div id={styles.name_be}>Наименование BE</div>*/}
-            {/*    <div id={styles.name_en}>Наименование EN</div>*/}
-            {/*    <div id={styles.letter}>Буква при выдаче</div>*/}
-            {/*    <div id={styles.start_end}>Начало-конец работы</div>*/}
-            {/*    <div id={styles.active_state}>Активный</div>*/}
-            {/*</div>*/}
             <div className={styles.table}>
                 <div className={`${styles.table_header} ${styles.name}`}>Наименование</div>
                 <div className={`${styles.table_header} ${styles.chapter}`}>Раздел</div>
