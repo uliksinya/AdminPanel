@@ -1,17 +1,22 @@
 @import "../../styles/mixins.scss";
-* {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  padding: 0;
-  margin: 0;
+.main_container{
+  width: 1582px;
+  height: 858px;
+  background-color: white;
+  margin-top: 23px;
+  margin-left: 27px;
+  position: relative;
 }
 table {
+  font-family: var(--font-inter);
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+
   display: grid;
   border-collapse: collapse;
   min-width: 100%;
+  user-select: none;
   grid-template-columns:
     minmax(425px, 1fr)
     minmax(74px, 1fr)
@@ -27,83 +32,68 @@ tbody,
 tr {
   display: contents;
 }
-th,
-td {
-  padding: 15px;
-  //overflow: hidden;
-  //text-overflow: ellipsis;
-  //white-space: nowrap;
+tbody td{
+  @include vertical-center;
+  padding: 16px 16px;
+  border-bottom: 1px solid #E0DEDE;
+}
+tr td:nth-child(2),
+tr td:nth-child(3),
+tr td:nth-child(6),
+tr td:nth-child(8){
+  @include horizontal-center;
 }
 th {
   position: sticky;
   top: 0;
-  text-align: left;
-  font-weight: normal;
-  font-size: 1.1rem;
+  font-weight: 400;
+  min-height: 48px;
+  @include vertical-center;
 }
 th:last-child {
   border: 0;
 }
 .resize_handle {
   position: absolute;
-  top: 0;
+  top: 10px;
   right: 0;
   bottom: 0;
-  background: black;
-  width: 3px;
+  background: #404040;
+  height: 26px;
+  width: 2px;
   cursor: col-resize;
 }
-.main_container{
-  width: 1582px;
-  height: 858px;
-  background-color: white;
-  margin-top: 23px;
-  margin-left: 27px;
-}
-
-//.table_header{
-//  resize: horizontal;
-//  overflow: hidden;
-//}
-.table_header{
-  @include vertical-center;
-  height: 26px;
-  margin-top: 11px;
-  margin-bottom: 11px;
-  font-family: var(--font-inter);
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 14px;
-  letter-spacing: 0em;
-  text-align: left;
-  border-right: 1px solid #404040;
+.resize_handle:hover{
+  background-color: #5AA2DC;
 }
 .name{
   padding-left: 44px;
+  min-height: 48px;
 }
-.chapter{
-  display: flex;
-  justify-content: center;
+.chapter, .services{
+  padding:0 12px;
 }
-.services, .table_item{
+.table_item{
   @include horizontal-center;
 }
 .name_be, .name_en{
   padding-left: 16px;
 }
-.letter, .start_end, .active_state{
-  @include flex-center;
-  text-align: center;
+.letter, .start_end{
+  padding: 0 12px;
+}
+.active_state{
+  padding-left: 12px;
 }
 
-
 .main_container_footer{
+  position: absolute;
+  bottom: 0;
   width: 1582px;
   height: 61px;
   border-top: 1px solid #E0DEDE;
   font-family: var(--font-inter);
-  position: fixed;
-  bottom: 0;
+
   padding-right: 235px;
   display: flex;
   align-items: center;

@@ -2,89 +2,69 @@ import React, {useState, useRef, useEffect} from "react";
 import styles from "./MainContent.module.scss";
 import LeftArr from "../../assets/img/left-arr.svg";
 import RightArr from "../../assets/img/right-arr.svg";
-
+import {Row} from "../Row/Row.jsx";
 export const MainContent = () => {
     const [pageCount, setPageCount] = useState(1);
+    const [isActiveRow, setRowActive] = useState(true);
+    const headerCellResizedRef = useRef(null);
     const [columns, setColumns] = useState([
-        // { startSize: "26.9fr", size: "26.9fr" },
-        // { startSize: "4.7fr", size: "4.7fr" },
-        // { startSize: "4.6fr", size: "4.6fr" },
-        // { startSize: "22fr", size: "22fr" },
-        // { startSize: "22f", size: "22fr" },
-        // { startSize: "6fr", size: "6fr" },
-        // { startSize: "7.77fr", size: "7.77fr" },
-        // { startSize: "6.03fr", size: "6.03fr" },
-        {size: "1fr"},
-        {size: "1fr"},
-        {size: "1fr"},
-        {size: "1fr"},
-        {size: "1fr"},
-        {size: "1fr"},
-        {size: "1fr"},
-        {size: "1fr"},
+        {size: "26.9fr"},
+        {size: "4.7fr"},
+        {size: "4.6fr"},
+        {size: "22fr"},
+        {size: "22fr"},
+        {size: "6fr"},
+        {size: "7.77fr"},
+        {size: "6.03fr"},
     ]);
-    const horizontalScrollOffsetRef = useRef(0);
-    const headerBeingResizedRef = useRef(null);
-
     const pageForward = () => {
         if (pageCount < 100) {
             setPageCount((prevPageCount) => prevPageCount + 1);
         }
     };
-
     const pageBack = () => {
         if (pageCount > 1) {
             setPageCount((prevPageCount) => prevPageCount - 1);
         }
     };
     const onMouseMove = (e) => {
-        requestAnimationFrame(() => {
-            // horizontalScrollOffsetRef.current = window.scrollX;
-            const width = horizontalScrollOffsetRef.current + e.clientX - headerBeingResizedRef.current.offsetLeft;
-            console.log( headerBeingResizedRef.current);
-            console.log(e.clientX);
-            console.log( headerBeingResizedRef.current.offsetLeft);
-            console.log(headerBeingResizedRef.current.cellIndex);
+            const width = e.pageX - headerCellResizedRef.current.offsetLeft;
+            console.log(`pageX ${e.pageX}`);
 
             setColumns((prevColumns) =>
                 prevColumns.map((column, index) =>
-                    index === headerBeingResizedRef.current.cellIndex
-                        ? { ...column, size: `minmax(${Math.max(20, width)}px, 1fr)` }
+                    index === headerCellResizedRef.current.cellIndex
+                        ? { ...column, size: `minmax(${Math.max(80, width)}px, 1fr)` }
                         : column
                 ));
-            console.log(`width ${width}`)
-
-            console.log(horizontalScrollOffsetRef.current);
-        });
+            console.log(`width ${width}`);
     };
     const onMouseUp = () => {
         window.removeEventListener("mousemove", onMouseMove);
         window.removeEventListener("mouseup", onMouseUp);
-        headerBeingResizedRef.current.classList.remove("header--being-resized");
-        // headerBeingResizedRef.current = null;
+        headerCellResizedRef.current.classList.remove("header--being-resized");
+        // headerCellResizedRef.current = null;
     };
-
     const initResize = ({ target }) => {
-        headerBeingResizedRef.current = target.parentNode;
+        headerCellResizedRef.current = target.parentNode;
         console.log(target.parentNode);
         window.addEventListener("mousemove", onMouseMove);
         window.addEventListener("mouseup", onMouseUp);
-        headerBeingResizedRef.current.classList.add("header--being-resized");
+        headerCellResizedRef.current.classList.add("header--being-resized");
     };
-    console.log(columns);
     return (
         <div className={styles.main_container}>
             <table style={{ gridTemplateColumns: columns.map((column) => column.size).join(" ") }}>
                 <thead>
                     <tr>
-                        <th>Наименование<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
-                        <th>Раздел<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
-                        <th>Услуги<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
-                        <th>Наименование BE<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
-                        <th>Наименование EN<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
-                        <th>Буква при выдаче<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
-                        <th>Начало-конец работы<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
-                        <th>Активный</th>
+                        <th className={styles.name}>Наименование<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
+                        <th className={styles.chapter}>Раздел<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
+                        <th className={styles.services}>Услуги<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
+                        <th className={styles.name_be}>Наименование BE<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
+                        <th className={styles.name_en}>Наименование EN<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
+                        <th className={styles.letter}>Буква при выдаче<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
+                        <th className={styles.start_end}>Начало-конец работы<span className={styles.resize_handle}></span></th>
+                        <th className={styles.active_state}>Активный</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -98,6 +78,17 @@ export const MainContent = () => {
                         <td>10:00-17:00</td>
                         <td>🙂</td>
                     </tr>
+                    <tr>
+                        <td>Раздел: Услуги таможенник</td>
+                        <td>0</td>
+                        <td>10</td>
+                        <td>Раздзел: Паслугі мытнік  Раздзел: Паслугі мытнік</td>
+                        <td>Section: Customs officer services</td>
+                        <td>-</td>
+                        <td>10:00-17:00</td>
+                        <td>🙂</td>
+                    </tr>
+                    <Row isActiveRow={isActiveRow}/>
                 </tbody>
             </table>
             <div className={styles.main_container_footer}>
