@@ -1,20 +1,66 @@
 @import "../../styles/mixins.scss";
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+table {
+  display: grid;
+  border-collapse: collapse;
+  min-width: 100%;
+  grid-template-columns:
+    minmax(425px, 1fr)
+    minmax(74px, 1fr)
+    minmax(72px, 1fr)
+    minmax(348px, 1fr)
+    minmax(348px, 1fr)
+    minmax(95px, 1fr)
+    minmax(123px, 1fr)
+    minmax(94px, 1fr)
+}
+thead,
+tbody,
+tr {
+  display: contents;
+}
+th,
+td {
+  padding: 15px;
+  //overflow: hidden;
+  //text-overflow: ellipsis;
+  //white-space: nowrap;
+}
+th {
+  position: sticky;
+  top: 0;
+  text-align: left;
+  font-weight: normal;
+  font-size: 1.1rem;
+}
+th:last-child {
+  border: 0;
+}
+.resize_handle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: black;
+  width: 3px;
+  cursor: col-resize;
+}
 .main_container{
   width: 1582px;
   height: 858px;
   background-color: white;
   margin-top: 23px;
   margin-left: 27px;
+}
 
-}
-.table{
-  display: grid;
-  grid-template-columns: 425px 74px 72px 348px 348px 95px 123px 94px;
-  //grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;/* 8 столбцов, минимальная ширина 50px, автоматическая расширяемость */
-  //grid-template-columns: minmax(425px, auto) minmax(74px, auto) minmax(72px, auto) minmax(348px, auto) minmax(348px, auto) minmax(95px, auto) minmax(123px, auto) minmax(94px, auto);
-  border-collapse: collapse;
-  width: 100%;
-}
 //.table_header{
 //  resize: horizontal;
 //  overflow: hidden;

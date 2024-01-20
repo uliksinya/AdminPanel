@@ -1,59 +1,114 @@
+import React, {useState, useRef, useEffect} from "react";
 import styles from "./MainContent.module.scss";
 import LeftArr from "../../assets/img/left-arr.svg";
 import RightArr from "../../assets/img/right-arr.svg";
-import {useState} from "react";
 
 export const MainContent = () => {
     const [pageCount, setPageCount] = useState(1);
-    function pageForward(){
-        if (pageCount < 100){
-            setPageCount(pageCount + 1);
+    const [columns, setColumns] = useState([
+        // { startSize: "26.9fr", size: "26.9fr" },
+        // { startSize: "4.7fr", size: "4.7fr" },
+        // { startSize: "4.6fr", size: "4.6fr" },
+        // { startSize: "22fr", size: "22fr" },
+        // { startSize: "22f", size: "22fr" },
+        // { startSize: "6fr", size: "6fr" },
+        // { startSize: "7.77fr", size: "7.77fr" },
+        // { startSize: "6.03fr", size: "6.03fr" },
+        {size: "1fr"},
+        {size: "1fr"},
+        {size: "1fr"},
+        {size: "1fr"},
+        {size: "1fr"},
+        {size: "1fr"},
+        {size: "1fr"},
+        {size: "1fr"},
+    ]);
+    const horizontalScrollOffsetRef = useRef(0);
+    const headerBeingResizedRef = useRef(null);
+
+    const pageForward = () => {
+        if (pageCount < 100) {
+            setPageCount((prevPageCount) => prevPageCount + 1);
         }
-        console.log("in function")
-    }
-    function pageBack(){
-        if(pageCount > 1){
-            setPageCount(pageCount - 1);
+    };
+
+    const pageBack = () => {
+        if (pageCount > 1) {
+            setPageCount((prevPageCount) => prevPageCount - 1);
         }
-    }
-    return(
+    };
+    const onMouseMove = (e) => {
+        requestAnimationFrame(() => {
+            // horizontalScrollOffsetRef.current = window.scrollX;
+            const width = horizontalScrollOffsetRef.current + e.clientX - headerBeingResizedRef.current.offsetLeft;
+            console.log( headerBeingResizedRef.current);
+            console.log(e.clientX);
+            console.log( headerBeingResizedRef.current.offsetLeft);
+            console.log(headerBeingResizedRef.current.cellIndex);
+
+            setColumns((prevColumns) =>
+                prevColumns.map((column, index) =>
+                    index === headerBeingResizedRef.current.cellIndex
+                        ? { ...column, size: `minmax(${Math.max(20, width)}px, 1fr)` }
+                        : column
+                ));
+            console.log(`width ${width}`)
+
+            console.log(horizontalScrollOffsetRef.current);
+        });
+    };
+    const onMouseUp = () => {
+        window.removeEventListener("mousemove", onMouseMove);
+        window.removeEventListener("mouseup", onMouseUp);
+        headerBeingResizedRef.current.classList.remove("header--being-resized");
+        // headerBeingResizedRef.current = null;
+    };
+
+    const initResize = ({ target }) => {
+        headerBeingResizedRef.current = target.parentNode;
+        console.log(target.parentNode);
+        window.addEventListener("mousemove", onMouseMove);
+        window.addEventListener("mouseup", onMouseUp);
+        headerBeingResizedRef.current.classList.add("header--being-resized");
+    };
+    console.log(columns);
+    return (
         <div className={styles.main_container}>
-            <div className={styles.table}>
-                <div className={`${styles.table_header} ${styles.name}`}>Наименование</div>
-                <div className={`${styles.table_header} ${styles.chapter}`}>Раздел</div>
-                <div className={`${styles.table_header} ${styles.services}`}>Услуги</div>
-                <div className={`${styles.table_header} ${styles.name_be}`}>Наименование BE</div>
-                <div className={`${styles.table_header} ${styles.name_en}`}>Наименование EN</div>
-                <div className={`${styles.table_header} ${styles.letter}`}>Буква при выдаче</div>
-                <div className={`${styles.table_header} ${styles.start_end}`}>Начало-конец работы</div>
-                <div className={`${styles.table_header} ${styles.active_state}`}>Активный</div>
-
-
-                    <div className={styles.table_item}>
-                        Услуга: ввесение данных в базу
-                        ввесение данных в базу  ввесение данных в базу
-                    </div>
-                    <div className={styles.table_item}>0</div>
-                    <div className={styles.table_item}>12</div>
-                    <div className={styles.table_item}>
-                        Услуга №1Услуга №1Услуга №1Услуга №1Услуга №1Услуга №1Услуга №1Услуга №1Услуга №1Услуга №1Услуга №1Услуга
-                    </div>
-                    <div className={styles.table_item}>
-                        Service: entering data into the database
-                        entering data into a database entering data into a database
-                    </div>
-                    <div className={styles.table_item}>-</div>
-                    <div className={styles.table_item}>10:00-17:00</div>
-                    <div className={styles.table_item}></div>
-
-            </div>
-
-
+            <table style={{ gridTemplateColumns: columns.map((column) => column.size).join(" ") }}>
+                <thead>
+                    <tr>
+                        <th>Наименование<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
+                        <th>Раздел<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
+                        <th>Услуги<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
+                        <th>Наименование BE<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
+                        <th>Наименование EN<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
+                        <th>Буква при выдаче<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
+                        <th>Начало-конец работы<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
+                        <th>Активный</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Услуга: ввесение данных в базу ввесение данных в базу  ввесение данных в базу</td>
+                        <td>0</td>
+                        <td>12</td>
+                        <td>Услуга №1Услуга №1Услуга №1Услуга №1Услуга №1Услуга №1Услуга №1Услуга №1Услуга №1Услуга №1Услуга №1Услуга </td>
+                        <td>Service: entering data into the database entering data into a database entering data into a database</td>
+                        <td>-</td>
+                        <td>10:00-17:00</td>
+                        <td>🙂</td>
+                    </tr>
+                </tbody>
+            </table>
             <div className={styles.main_container_footer}>
                 Страница: {pageCount}
-                <div className={styles.left_arr} onClick={pageBack}><img src={LeftArr}/></div>
-                <div className={styles.right_arr} onClick={pageForward}><img src={RightArr}/></div>
+                <div className={styles.left_arr} onClick={pageBack}>
+                    <img src={LeftArr} alt="Left Arrow" />
+                </div>
+                <div className={styles.right_arr} onClick={pageForward}>
+                    <img src={RightArr} alt="Right Arrow" />
+                </div>
             </div>
         </div>
-    )
-}
+    );
+};
