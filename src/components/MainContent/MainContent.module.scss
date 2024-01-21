@@ -1,6 +1,6 @@
 @import "../../styles/mixins.scss";
 .main_container{
-  width: 1582px;
+  width: 96.6%;
   height: 858px;
   background-color: white;
   margin-top: 23px;
@@ -44,14 +44,15 @@ tr td:nth-child(8){
   @include horizontal-center;
 }
 th {
-  position: sticky;
+  position: relative;
   top: 0;
   font-weight: 400;
   min-height: 48px;
+  border-bottom: 1px solid #E0DEDE;
   @include vertical-center;
 }
 th:last-child {
-  border: 0;
+  border-right: none;
 }
 .resize_handle {
   position: absolute;
@@ -89,7 +90,7 @@ th:last-child {
 .main_container_footer{
   position: absolute;
   bottom: 0;
-  width: 1582px;
+  width: 100%;
   height: 61px;
   border-top: 1px solid #E0DEDE;
   font-family: var(--font-inter);
@@ -105,3 +106,11 @@ th:last-child {
 .right_arr{
   margin-left: 6px;
 }
+.right_arr, .left_arr{
+  cursor: pointer;
+}
+//@media (max-width: 1440px) {
+//  .letter, .start_end{
+//    padding: 0 5px;
+//  }
+//}

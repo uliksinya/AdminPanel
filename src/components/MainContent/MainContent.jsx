@@ -3,10 +3,10 @@ import styles from "./MainContent.module.scss";
 import LeftArr from "../../assets/img/left-arr.svg";
 import RightArr from "../../assets/img/right-arr.svg";
 import {Row} from "../Row/Row.jsx";
+import {rowsData} from "../../data/data.js";
 export const MainContent = () => {
     const [pageCount, setPageCount] = useState(1);
-    const [isActiveRow, setRowActive] = useState(true);
-    const headerCellResizedRef = useRef(null);
+    const [activeRow, setRowActive] = useState(0);
     const [columns, setColumns] = useState([
         {size: "26.9fr"},
         {size: "4.7fr"},
@@ -17,6 +17,38 @@ export const MainContent = () => {
         {size: "7.77fr"},
         {size: "6.03fr"},
     ]);
+    const headerCellResizedRef = useRef(null);
+    /* Изменение активной строки при клике и при помощи клавиш*/
+    const handleEditActiveRow = (id) => {
+        setRowActive(id);
+    }
+    const handleKeyDown = (e) => {
+        switch (e.key) {
+            case "ArrowUp":
+                setRowActive((prevActiveRow) =>
+                    prevActiveRow > 0 ? prevActiveRow - 1 : prevActiveRow
+                );
+                break;
+            case "ArrowDown":
+                setRowActive((prevActiveRow) =>
+                    prevActiveRow < rowsData.length - 1
+                        ? prevActiveRow + 1
+                        : prevActiveRow
+                );
+                break;
+            default:
+                break;
+        }
+    };
+    useEffect(() => {
+        document.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [activeRow]);
+
+    /* Страницы в футере*/
     const pageForward = () => {
         if (pageCount < 100) {
             setPageCount((prevPageCount) => prevPageCount + 1);
@@ -27,30 +59,48 @@ export const MainContent = () => {
             setPageCount((prevPageCount) => prevPageCount - 1);
         }
     };
+    /* Изменение ширины столбцов таблицы */
+    const checkTableWidth = (refTh, width) => {
+        const thElements = document.querySelectorAll('thead th');
+        console.log(`ths ${thElements}`);
+        let totalWidth = 0;
+        thElements.forEach((th, index) => {
+            if (index !== refTh.current.cellIndex) {
+                totalWidth += th.clientWidth;
+                console.log(`+${th.clientWidth}`);
+            }
+            console.log(th);
+        });
+        console.log(totalWidth+width);
+        return (totalWidth + width) < 1600;
+    }
     const onMouseMove = (e) => {
-            const width = e.pageX - headerCellResizedRef.current.offsetLeft;
-            console.log(`pageX ${e.pageX}`);
-
-            setColumns((prevColumns) =>
-                prevColumns.map((column, index) =>
-                    index === headerCellResizedRef.current.cellIndex
-                        ? { ...column, size: `minmax(${Math.max(80, width)}px, 1fr)` }
-                        : column
-                ));
-            console.log(`width ${width}`);
+            const width = e.pageX - (headerCellResizedRef.current.getBoundingClientRect().left + window.scrollX);
+            if(checkTableWidth(headerCellResizedRef, width)){
+                setColumns((prevColumns) =>
+                    prevColumns.map((column, index) =>
+                        index === headerCellResizedRef.current.cellIndex
+                            ? { ...column, size: `minmax(${Math.max(80, width)}px, 1fr)` }
+                            : column
+                    )
+                );
+            }
+            // console.log(`pageX ${e.pageX}`);
+            // console.log(`scroll ${window.scrollX}`);
+            // console.log(`left ${headerCellResizedRef.current.getBoundingClientRect().left}`);
+            // console.log(`width ${width}`);
     };
     const onMouseUp = () => {
         window.removeEventListener("mousemove", onMouseMove);
         window.removeEventListener("mouseup", onMouseUp);
-        headerCellResizedRef.current.classList.remove("header--being-resized");
-        // headerCellResizedRef.current = null;
+        //headerCellResizedRef.current.classList.remove("header--being-resized");
+        //headerCellResizedRef.current = null;
     };
     const initResize = ({ target }) => {
         headerCellResizedRef.current = target.parentNode;
-        console.log(target.parentNode);
         window.addEventListener("mousemove", onMouseMove);
         window.addEventListener("mouseup", onMouseUp);
-        headerCellResizedRef.current.classList.add("header--being-resized");
+        //headerCellResizedRef.current.classList.add("header--being-resized");
     };
     return (
         <div className={styles.main_container}>
@@ -68,27 +118,15 @@ export const MainContent = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Услуга: ввесение данных в базу ввесение данных в базу  ввесение данных в базу</td>
-                        <td>0</td>
-                        <td>12</td>
-                        <td>Услуга №1Услуга №1Услуга №1Услуга №1Услуга №1Услуга №1Услуга №1Услуга №1Услуга №1Услуга №1Услуга №1Услуга </td>
-                        <td>Service: entering data into the database entering data into a database entering data into a database</td>
-                        <td>-</td>
-                        <td>10:00-17:00</td>
-                        <td>🙂</td>
-                    </tr>
-                    <tr>
-                        <td>Раздел: Услуги таможенник</td>
-                        <td>0</td>
-                        <td>10</td>
-                        <td>Раздзел: Паслугі мытнік  Раздзел: Паслугі мытнік</td>
-                        <td>Section: Customs officer services</td>
-                        <td>-</td>
-                        <td>10:00-17:00</td>
-                        <td>🙂</td>
-                    </tr>
-                    <Row isActiveRow={isActiveRow}/>
+                    {rowsData.map((rowObj, index) => (
+                        <Row
+                            key={rowObj.id}
+                            id={rowObj.id}
+                            activeRow={activeRow}
+                            rowObj={rowObj}
+                            onClick={() => handleEditActiveRow(index)}
+                        />
+                    ))}
                 </tbody>
             </table>
             <div className={styles.main_container_footer}>
@@ -102,4 +140,4 @@ export const MainContent = () => {
             </div>
         </div>
     );
-};
+}
