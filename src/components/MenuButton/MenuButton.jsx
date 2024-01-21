@@ -13,4 +13,3 @@ export const MenuButton = ({content, isActive, onClick}) => {
         </button>
     )
 }
-export default MenuButton;

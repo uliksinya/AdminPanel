@@ -12,7 +12,7 @@ export const Header = () => {
                 <div className={styles.date}><span id={"date"}>{generateDate()}</span></div>
             </div>
             <div className={styles.admin}>
-                <img src={AdminLogo} alt={"admin-logo"} id={styles.admin_logo}/>
+                <img src={AdminLogo} alt={"admin-logo"}/>
                 <div><span>Администратор</span></div>
             </div>
         </div>

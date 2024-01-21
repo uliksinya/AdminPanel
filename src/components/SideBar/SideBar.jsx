@@ -1,4 +1,4 @@
-import styles from "./SideBar.module.scss";
+import styles from "./Sidebar.module.scss";
 import CompanyLogo from "../../assets/img/logo_TehnoSky.png";
 import SystemQueueLogo from "../../assets/img/logo_system.png";
 import IconMail from "../../assets/img/mail.svg";
@@ -83,11 +83,11 @@ export const SideBar = () => {
             </ul>
             <div className={styles.menu_footer}>
                 <div className={styles.menu_footer_folder}>
-                    <img src={IconMail} id={styles.mail} alt={"mail-icon"}/>
-                    <a href='info@high-tech.by'><span>info@high-tech.by</span></a>
+                    <img src={IconMail} alt={"mail-icon"}/>
+                    <a href='#'><span>info@high-tech.by</span></a>
                 </div>
                 <div className={styles.menu_footer_folder}>
-                    <img src={IconGlobe} id={styles.globe} alt={"globe-icon"}/>
+                    <img src={IconGlobe} alt={"globe-icon"}/>
                     <a href='https://high-tech.by/'><span>high-tech.by</span></a>
                 </div>
             </div>
