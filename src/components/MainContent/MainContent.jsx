@@ -4,7 +4,9 @@ import LeftArr from "../../assets/img/left-arr.svg";
 import RightArr from "../../assets/img/right-arr.svg";
 import {Row} from "../Row/Row.jsx";
 import {rowsData} from "../../data/data.js";
-export const MainContent = () => {
+import {ContentHeader} from "../ContentHeader/ContentHeader.jsx";
+import {ModalSectionService} from "../ModalBoxes/ModalSectionService/ModalSectionService.jsx";
+export const MainContent = ({sectionName}) => {
     const [pageCount, setPageCount] = useState(1);
     const [activeRow, setRowActive] = useState(0);
     const [columns, setColumns] = useState([
@@ -22,6 +24,12 @@ export const MainContent = () => {
     const handleEditActiveRow = (id) => {
         setRowActive(id);
     }
+    const [modalActive, setModalActive] = useState(false);
+    const handleButtonClick = () => {
+        setModalActive(true);
+        console.log("ubiuviu");
+        console.log(modalActive);
+    };
     const handleKeyDown = (e) => {
         switch (e.key) {
             case "ArrowUp":
@@ -103,41 +111,47 @@ export const MainContent = () => {
         //headerCellResizedRef.current.classList.add("header--being-resized");
     };
     return (
+        <div className={styles.content_container}>
+        <ModalSectionService active={modalActive} setActive={setModalActive} name={sectionName}/>
         <div className={styles.main_container}>
-            <table style={{ gridTemplateColumns: columns.map((column) => column.size).join(" ") }}>
-                <thead>
-                    <tr>
-                        <th className={styles.name}>Наименование<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
-                        <th className={styles.chapter}>Раздел<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
-                        <th className={styles.services}>Услуги<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
-                        <th className={styles.name_be}>Наименование BE<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
-                        <th className={styles.name_en}>Наименование EN<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
-                        <th className={styles.letter}>Буква при выдаче<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
-                        <th className={styles.start_end}>Начало-конец работы<span className={styles.resize_handle}></span></th>
-                        <th className={styles.active_state}>Активный</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {rowsData.map((rowObj, index) => (
-                        <Row
-                            key={rowObj.id}
-                            id={rowObj.id}
-                            activeRow={activeRow}
-                            rowObj={rowObj}
-                            onClick={() => handleEditActiveRow(index)}
-                        />
-                    ))}
-                </tbody>
-            </table>
-            <div className={styles.main_container_footer}>
-                Страница: {pageCount}
-                <div className={styles.left_arr} onClick={pageBack}>
-                    <img src={LeftArr} alt="Left Arrow" />
-                </div>
-                <div className={styles.right_arr} onClick={pageForward}>
-                    <img src={RightArr} alt="Right Arrow" />
+            <ContentHeader name={sectionName} handleButtonClick={handleButtonClick}/>
+            <div className={styles.table_container}>
+                <table className={styles.content_table} style={{ gridTemplateColumns: columns.map((column) => column.size).join(" ") }}>
+                    <thead>
+                        <tr>
+                            <th className={styles.name}>Наименование<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
+                            <th className={styles.chapter}>Раздел<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
+                            <th className={styles.services}>Услуги<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
+                            <th className={styles.name_be}>Наименование BE<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
+                            <th className={styles.name_en}>Наименование EN<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
+                            <th className={styles.letter}>Буква при выдаче<span className={styles.resize_handle} onMouseDown={initResize}></span></th>
+                            <th className={styles.start_end}>Начало-конец работы<span className={styles.resize_handle}></span></th>
+                            <th className={styles.active_state}>Активный</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {rowsData.map((rowObj, index) => (
+                            <Row
+                                key={rowObj.id}
+                                id={rowObj.id}
+                                activeRow={activeRow}
+                                rowObj={rowObj}
+                                onClick={() => handleEditActiveRow(index)}
+                            />
+                        ))}
+                    </tbody>
+                </table>
+                <div className={styles.main_container_footer}>
+                    Страница: {pageCount}
+                    <div className={styles.left_arr} onClick={pageBack}>
+                        <img src={LeftArr} alt="Left Arrow" />
+                    </div>
+                    <div className={styles.right_arr} onClick={pageForward}>
+                        <img src={RightArr} alt="Right Arrow" />
+                    </div>
                 </div>
             </div>
+        </div>
         </div>
     );
 }

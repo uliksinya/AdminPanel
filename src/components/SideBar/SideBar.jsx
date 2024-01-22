@@ -5,12 +5,16 @@ import IconMail from "../../assets/img/mail.svg";
 import IconGlobe from "../../assets/img/globe.svg"
 import {MenuButton} from "../MenuButton/MenuButton.jsx";
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 export const SideBar = () => {
     const [activeButton, setActiveButton] = useState("Разделы и услуги");
 
     const handleButtonClick = (content) => {
         setActiveButton(content);
-        console.log("Clicked on:", content);
+    };
+    const navigate = useNavigate();
+    const redirectToPostPage = (section) => {
+        navigate(`${section}`);
     };
     return (
         <div className={styles.sidebar}>
@@ -26,58 +30,82 @@ export const SideBar = () => {
             <ul className={styles.menu}>
                 <li>
                     <MenuButton
-                    content="Разделы и услуги"
-                    isActive={activeButton === "Разделы и услуги"}
-                    onClick={() => handleButtonClick("Разделы и услуги")}
+                        content="Разделы и услуги"
+                        isActive={activeButton === "Разделы и услуги"}
+                        onClick={() => {
+                            redirectToPostPage('/section-services');
+                            handleButtonClick('Разделы и услуги');
+                        }}
                     />
                 </li>
                 <li>
                     <MenuButton
                         content="Рабочие места"
                         isActive={activeButton === "Рабочие места"}
-                        onClick={() => handleButtonClick("Рабочие места")}
+                        onClick={() =>  {
+                            redirectToPostPage('/workplaces');
+                            handleButtonClick('Рабочие места');
+                        }}
                     />
                 </li>
                 <li>
                     <MenuButton
                         content="Сотрудники"
                         isActive={activeButton === "Сотрудники"}
-                        onClick={() => handleButtonClick("Сотрудники")}
+                        onClick={() => {
+                            redirectToPostPage("/employees");
+                            handleButtonClick('Сотрудники');
+                        }}
                     />
                 </li>
                 <li>
                     <MenuButton
                         content="Места на парковке"
                         isActive={activeButton === "Места на парковке"}
-                        onClick={() => handleButtonClick("Места на парковке")}
+                        onClick={() => {
+                            redirectToPostPage('/parking-spaces');
+                            handleButtonClick('Места на парковке');
+                        }}
                     />
                 </li>
                 <li>
                     <MenuButton
                         content="Управление счетчиком обнуления талонов"
                         isActive={activeButton === "Управление счетчиком обнуления талонов"}
-                        onClick={() => handleButtonClick("Управление счетчиком обнуления талонов")}
+                        onClick={() => {
+                            redirectToPostPage('/counter-management');
+                            handleButtonClick('Управление счетчиком обнуления талонов');
+                        }}
                     />
                 </li>
                 <li>
                     <MenuButton
                         content="Аналитика и отчеты"
                         isActive={activeButton === "Аналитика и отчеты"}
-                        onClick={() => handleButtonClick("Аналитика и отчеты")}
+                        onClick={() => {
+                            redirectToPostPage('/analytics-and-reports');
+                            handleButtonClick('Аналитика и отчеты');
+                        }}
                     />
                 </li>
                 <li>
                     <MenuButton
                         content="Реклама"
                         isActive={activeButton === "Реклама"}
-                        onClick={() => handleButtonClick("Реклама")}
+                        onClick={() => {
+                            redirectToPostPage('/advertising');
+                            handleButtonClick('Реклама');
+                        }}
                     />
                 </li>
                 <li>
                     <MenuButton
                         content="Личный кабинет"
                         isActive={activeButton === "Личный кабинет"}
-                        onClick={() => handleButtonClick("Личный кабинет")}
+                        onClick={() => {
+                            redirectToPostPage("/personal-area");
+                            handleButtonClick('Личный кабинет');
+                        }}
                     />
                 </li>
             </ul>

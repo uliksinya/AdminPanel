@@ -1,8 +1,9 @@
 import {SideBar} from "../SideBar/SideBar.jsx";
 import {Header} from "../Header/Header.jsx";
 import styles from "./Layout.module.scss"
-import {ContentHeader} from "../ContentHeader/ContentHeader.jsx";
-import {MainContent} from "../MainContent/MainContent.jsx";
+import {Outlet} from 'react-router-dom';
+import {ModalSectionService} from "../ModalBoxes/ModalSectionService/ModalSectionService.jsx";
+import React from "react";
 
 export const Layout = () => {
     return(
@@ -10,9 +11,9 @@ export const Layout = () => {
             <SideBar/>
             <div className={styles.right_side}>
                 <Header/>
-                <ContentHeader/>
-                <MainContent/>
+                <Outlet/>
             </div>
         </div>
+
     )
 }
