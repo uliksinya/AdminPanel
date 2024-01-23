@@ -1,8 +1,8 @@
+@import "../../../styles/mixins";
 .modal{
   height: 100%;
   width: 100%;
   background-color: rgba(198, 198, 198, 0.3);
-;
   position: absolute;
   top: 0;
   left: 0;
@@ -13,6 +13,10 @@
   pointer-events: none;
   transition: 0.5s;
   z-index: 9;
+}
+.content{
+  display: flex;
+  flex-direction: row;
 }
 .modal.active{
   opacity: 1;
@@ -54,4 +58,72 @@ h2{
   line-height: 16px;
   letter-spacing: 0;
   text-align: center;
+}
+.start_time{
+  width: 169px;
+  height: 41px;
+  //margin-left: 40px;
+}
+//.MuiInputAdornment-standardEndAdornment{
+//  display: none;
+//}
+.customTextField {
+  width: 100%; /* Настройте ширину по вашему усмотрению */
+}
+.name_ru{
+  width: 356px;
+  height: 52px;
+  margin-top: 42px;
+}
+.name_en{
+  margin-top: 29px;
+}
+.error_text{
+  color:red;
+}
+.service{
+  height: 44px;
+  border-bottom: 1px solid #E0DEDE;
+}
+.dropdown_container{
+  width: 356px;
+  height: 314px;
+}
+li{
+  @include flex-center;
+  font-family: var(--font-roboto-regular);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0;
+  text-align: left;
+}
+.right_part{
+  width: 100%;
+  margin-left: 20px;
+}
+.right_time{
+  margin-left: 20px;
+}
+.time_container{
+  display: flex;
+  flex-direction: row;
+  //margin-top: 15px;
+}
+.name_be{
+  margin-top: 45px;
+}
+.dropdown_container_2{
+  height: 52px;
+}
+.added_services{
+  height: 324px;
+  margin-top: 29px;
+}
+.buttons_container{
+  width: 358px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
 }

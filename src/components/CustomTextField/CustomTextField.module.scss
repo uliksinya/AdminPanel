@@ -1,0 +1,43 @@
+*{
+  border:none;
+  outline:none;
+  font-family: var(--font-roboto-regular);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0;
+  text-align: left;
+}
+.custom_textfield{
+  box-sizing: border-box;
+  border: 1px solid #E0DEDE;
+  border-radius: 6px;
+  width: 100%;
+  height: 100%;
+
+  padding: 10px;
+  position: relative;
+}
+.customTextFieldContainer {
+  position: relative;
+  height: 100%;
+}
+.custom_label {
+  position: absolute;
+  font-size: 12px;
+  top: -9px;
+  left: 8px; /* или другие значения отступов по вашему выбору */
+  background-color: white; /* чтобы label был виден над textarea */
+  padding: 0 4px; /* необходимый отступ для label */
+  z-index: 9;
+  color: #E0DEDE;
+}
+.error_text{
+  font-family: var(--font-inter);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 0;
+  text-align: left;
+  color: #FF3D3D;
+}
