@@ -8,6 +8,16 @@
   letter-spacing: 0;
   text-align: left;
 }
+textarea{
+  resize: none;
+  overflow: hidden;
+}
+.textarea_container{
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+
+}
 .custom_textfield{
   box-sizing: border-box;
   border: 1px solid #E0DEDE;
@@ -18,6 +28,15 @@
   padding: 10px;
   position: relative;
 }
+.second{
+  overflow-y: scroll;
+}
+.second::-webkit-scrollbar {
+  width: 2px;
+}
+.second::-webkit-scrollbar-thumb {
+  background-color: #aeadad;
+}
 .customTextFieldContainer {
   position: relative;
   height: 100%;
@@ -26,11 +45,11 @@
   position: absolute;
   font-size: 12px;
   top: -9px;
-  left: 8px; /* или другие значения отступов по вашему выбору */
-  background-color: white; /* чтобы label был виден над textarea */
-  padding: 0 4px; /* необходимый отступ для label */
+  left: 8px;
+  background-color: white;
+  padding: 0 4px;
   z-index: 9;
-  color: #E0DEDE;
+  color: #404040;
 }
 .error_text{
   font-family: var(--font-inter);
@@ -40,4 +59,5 @@
   letter-spacing: 0;
   text-align: left;
   color: #FF3D3D;
+  padding-left: 12px;
 }

@@ -5,7 +5,7 @@ export const CustomTextField = ({ labelName, value, onChange, isValid, errorText
         <div className={styles.customTextFieldContainer}>
             <label className={styles.custom_label}>{labelName}</label>
             {isValue ? (
-                <div>
+                <div className={styles.textarea_container}>
                     <textarea
                         spellCheck="false"
                         id="myText"
@@ -17,7 +17,7 @@ export const CustomTextField = ({ labelName, value, onChange, isValid, errorText
                     {isValid ? "" : <h3 className={styles.error_text}>{errorText}</h3>}
                 </div>
             ) : (
-                <div className={styles.custom_textfield}>{children}</div>
+                <div className={`${styles.custom_textfield} ${styles.second}`}>{children}</div>
             )}
         </div>
     );

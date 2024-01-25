@@ -5,9 +5,11 @@ import {CustomTextField} from "../../CustomTextField/CustomTextField.jsx";
 import {validateInputRuName} from "../../../utils/Validators/validatorRu.js";
 import {validateInputEnName} from "../../../utils/Validators/validatorEn.js";
 import {DropDown} from "../../DropDown/DropDown.jsx";
-import {services} from "../../../utils/data.js";
+import {sections, services} from "../../../utils/data.js";
 import {validateInputByName} from "../../../utils/Validators/validatorBe.js";
 import {CustomButton} from "../../CustomButton/CustomButton.jsx";
+import {SearchTextField} from "../../SearchTextField/SearchTextField.jsx";
+import RedCross from "../../../assets/img/red_cross.svg";
 export const ModalSectionService = ({ active, setActive, name}) => {
     const [selectedValue, setSelectedValue] = useState('chapter');
     const [inputRuName, setInputRuName] = useState(
@@ -31,6 +33,7 @@ export const ModalSectionService = ({ active, setActive, name}) => {
             errorText: ''
         }
     );
+    const [searchValue, setSearchValue] = useState('');
     const handleInputRuName = (e) => {
         const value = e.target.value;
         setInputRuName({
@@ -52,15 +55,23 @@ export const ModalSectionService = ({ active, setActive, name}) => {
             ...validateInputByName(value),
         });
     }
+    const handleSearchInput = (e) => {
+        setSearchValue(e.target.value);
+    }
+    const handleClearInput = () => {
+        setSearchValue('');
+    }
     const handleRadioChange = (e) => {
         setSelectedValue(e.target.value);
     };
 
     return (
         <div className={active ? `${styles.modal} ${styles.active}` : `${styles.modal}`} onClick={() => setActive(false)}>
-            <div className={styles.modal_content} onClick={event => event.stopPropagation()}>
+            <div className={selectedValue === 'chapter' ? styles.chapter_container : styles.service_container} onClick={event => event.stopPropagation()}>
                 <h2>{name}</h2>
-                <div className={styles.content}>
+                {selectedValue === 'chapter'
+                    ?
+                <div className={styles.chapter_content}>
                     <div className={styles.left_part}>
                         <div className={styles.radio_container}>
                             <div id={styles.radio}>
@@ -108,16 +119,16 @@ export const ModalSectionService = ({ active, setActive, name}) => {
                                 isValue={true}
                             />
                         </div>
-                        <div className={styles.dropdown_container}>
-                            <DropDown isOpen={true} label={'Добавить услуги'} firstService={services[0].content}>
+                        <div className={styles.search_container}>
+                            <SearchTextField label={'Добавить услуги'} onChange={handleSearchInput} value={searchValue} clearInput={handleClearInput}>
                                 {
                                     services.map(item => (
-                                        <li key={item.id} className={styles.service}>
+                                        <div key={item.id} className={styles.service}>
                                             {item.content}
-                                        </li>
+                                        </div>
                                     ))
                                 }
-                            </DropDown>
+                            </SearchTextField>
                         </div>
                     </div>
                     <div className={styles.right_part}>
@@ -128,17 +139,9 @@ export const ModalSectionService = ({ active, setActive, name}) => {
                                     label="Начало работы"
                                     type="time"
                                     defaultValue="10:00"
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
                                     inputProps={{
                                         step: 300, // 5 min
                                     }}
-                                    // InputProps={{
-                                    //     endAdornment: (
-                                    //         <img src={TimeIcon} alt="Your Custom Icon" style={{ width: 24, height: 24 }} />
-                                    //     ),
-                                    // }}
                                     className={styles.start_time}
                                 />
                             </div>
@@ -156,7 +159,6 @@ export const ModalSectionService = ({ active, setActive, name}) => {
                                     }}
                                     className={styles.start_time}
                                     variant={"outlined"}
-                                    // style={{ marginLeft: '10px' }}
                                 />
                             </div>
                         </div>
@@ -172,11 +174,11 @@ export const ModalSectionService = ({ active, setActive, name}) => {
                             />
                         </div>
                         <div className={styles.dropdown_container_2}>
-                            <DropDown isOpen={false} label={'Родительский раздел'} firstService={services[0].content}>
+                            <DropDown isOpen={false} label={'Родительский раздел'} firstService={sections[0].section}>
                                 {
-                                    services.map(item => (
+                                    sections.map(item => (
                                         <li key={item.id} className={styles.service}>
-                                            {item.content}
+                                            {item.section}
                                         </li>
                                     ))
                                 }
@@ -185,16 +187,15 @@ export const ModalSectionService = ({ active, setActive, name}) => {
                         <div className={styles.added_services}>
                             <CustomTextField
                                 labelName={'Добавленные услуги'}
-                                value={inputBeName.value}
-                                onChange={handleInputBeName}
-                                isValid={inputBeName.isValid}
-                                errorText={inputBeName.errorText}
                                 disabled={false}
                                 isValue={false}
                             >
                             {
                                 services.map(item => (
-                                <div key={item.id} className={styles.service}>
+                                <div key={item.id} className={styles.added_service}>
+                                    <div>
+                                        <img src={RedCross} alt={'cross'}/>
+                                    </div>
                                     {item.content}
                                 </div>
                                 ))
@@ -202,11 +203,120 @@ export const ModalSectionService = ({ active, setActive, name}) => {
                             </CustomTextField>
                         </div>
                         <div className={styles.buttons_container}>
-                            <CustomButton content={'отмена'} styleType={'not-active'}/>
+                            <CustomButton content={'отмена'} styleType={'not-active'} onClick={() => setActive(false)}/>
                             <CustomButton content={'сохранить'} styleType={'active'}/>
                         </div>
                     </div>
                 </div>
+                    :
+                <div className={styles.service_conent}>
+                    <div className={styles.left_part}>
+                        <div className={styles.first_row}>
+                            <div className={styles.radio_container_service}>
+                                    <div id={styles.radio}>
+                                    <input
+                                        type="radio"
+                                        id="charter"
+                                            name="group"
+                                            value="chapter"
+                                            checked={selectedValue === 'chapter'}
+                                            onChange={handleRadioChange}
+                                    />
+                                        <label htmlFor="charter">Раздел</label>
+                                    </div>
+                                    <div id={styles.radio}>
+                                        <input
+                                            type="radio"
+                                            id="service"
+                                            name="group"
+                                            value="service"
+                                            checked={selectedValue === 'service'}
+                                            onChange={handleRadioChange}
+                                        />
+                                        <label htmlFor="service">Услуга</label>
+                                    </div>
+                            </div>
+                            <div className={styles.letter}>
+                                <CustomTextField
+                                    labelName={'Буква при выдаче билета'}
+                                    value={'Б'}
+                                    disabled={false}
+                                    isValue={true}
+                                />
+                            </div>
+                        </div>
+                        <div className={styles.name_ru_sevice}>
+                            <CustomTextField
+                                labelName={'Наименование RU'}
+                                value={inputRuName.value}
+                                onChange={handleInputRuName}
+                                isValid={inputRuName.isValid}
+                                errorText={inputRuName.errorText}
+                                disabled={false}
+                                isValue={true}
+                            />
+                        </div>
+                        <div className={styles.name_en}>
+                            <CustomTextField
+                                labelName={'Наименование EN'}
+                                value={inputEnName.value}
+                                onChange={handleInputEnName}
+                                isValid={inputEnName.isValid}
+                                errorText={inputEnName.errorText}
+                                disabled={false}
+                                isValue={true}
+                            />
+                        </div>
+                    </div>
+                    <div className={styles.right_part}>
+                        <div className={`${styles.time_container} ${styles.time_service}`}>
+                            <div className={styles.left_time}>
+                                <TextField
+                                    id="time"
+                                    label="Начало работы"
+                                    type="time"
+                                    defaultValue="10:00"
+                                    inputProps={{
+                                        step: 300, // 5 min
+                                    }}
+                                    className={styles.start_time}
+                                />
+                            </div>
+                            <div className={styles.right_time}>
+                                <TextField
+                                    id="time"
+                                    label="Конец работы"
+                                    type="time"
+                                    defaultValue="18:00"
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    inputProps={{
+                                        step: 300, // 5 min
+                                    }}
+                                    className={styles.start_time}
+                                    variant={"outlined"}
+                                />
+                            </div>
+                        </div>
+                        <div className={`${styles.name_be} ${styles.be_service}`}>
+                            <CustomTextField
+                                labelName={'Наименование BE'}
+                                value={inputBeName.value}
+                                onChange={handleInputBeName}
+                                isValid={inputBeName.isValid}
+                                errorText={inputBeName.errorText}
+                                disabled={false}
+                                isValue={true}
+                            />
+                        </div>
+                        <div className={`${styles.buttons_container} ${styles.services_buttons}`}>
+                            <CustomButton content={'отмена'} styleType={'not-active'} onClick={() => setActive(false)}/>
+                            <CustomButton content={'сохранить'} styleType={'active'}/>
+                        </div>
+                    </div>
+                </div>
+                }
             </div>
         </div>
     );

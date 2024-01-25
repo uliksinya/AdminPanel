@@ -8,7 +8,9 @@ export const ContentHeader = ({name, handleButtonClick}) => {
                 <h2>{name}</h2>
                 <Tabs/>
             </div>
-            <CustomButton content={"Create"} styleType={"active"} onClick={handleButtonClick}/>
+            <div className={styles.btn_container}>
+                <CustomButton content={"Create"} styleType={"active"} onClick={handleButtonClick}/>
+            </div>
         </div>
     )
 }
