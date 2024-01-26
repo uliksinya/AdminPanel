@@ -1,0 +1,85 @@
+@import "../../../../styles/mixins";
+.chapter_content{
+  display: flex;
+  flex-direction: row;
+}
+.radio_container{
+  margin-top: 31px;
+  width: 156px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.radio_container label{
+  font-family: var(--font-roboto-regular);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0;
+  text-align: center;
+}
+.radio{
+  width: 69px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.name_ru, .name_en, .name_be{
+  width: 356px;
+  height: 52px;
+  box-sizing: border-box;
+}
+.name_ru{
+  margin-top: 42px;
+}
+.name_en{
+  margin-top: 29px;
+}
+.name_be{
+  margin-top: 48px;
+}
+.search_container{
+  margin-top: 29px;
+}
+.service_item{
+  height: 44px;
+  border-bottom: 1px solid #E0DEDE;
+  padding-left: 9px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.right_part{
+  width: 100%;
+  margin-left: 20px;
+}
+.time_container{
+ @include row-direction;
+}
+.right_time{
+  margin-left: 20px;
+}
+.left_time, .start_time{
+  width: 169px;
+  height: 41px;
+}
+.chapters_dropdown{
+  background-color: white;
+  margin-top: 29px;
+}
+.added_services{
+  height: 324px;
+  margin-top: 29px;
+}
+.added_service_item{
+  height: 44px;
+  border-bottom: 1px solid #E0DEDE;
+  @include row-space-between;
+  align-items: center;
+}
+.buttons_container{
+  width: 358px;
+  margin-top: 20px;
+  @include row-space-between;
+}

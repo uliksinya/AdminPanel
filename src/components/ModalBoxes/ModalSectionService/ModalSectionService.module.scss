@@ -6,191 +6,25 @@
   position: absolute;
   top: 0;
   left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   opacity: 0;
   pointer-events: none;
   transition: 0.5s;
   z-index: 9;
-}
-.chapter_content, .service_conent{
-  display: flex;
-  flex-direction: row;
+  @include flex-center;
 }
 .modal.active{
   opacity: 1;
   pointer-events: all;
 }
-.chapter_container{
+.chapter_container, .service_container{
   width: 837px;
-  height: 721px;
   background-color: white;
+}
+.chapter_container{
+  height: 721px;
   padding: 26px 57px 48px 48px;
 }
 .service_container{
-  width: 837px;
   height: 368px;
-  background-color: white;
   padding: 26px 55px 39px 48px;
-}
-h2{
-  font-family: var(--font-roboto-bold);
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 23px;
-  letter-spacing: 0;
-  text-align: left;
-  color:#404040;
-}
-.radio_container{
-  margin-top: 31px;
-  width: 156px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-.radio{
-  width: 69px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.radio_container label{
-  font-family: var(--font-roboto-regular);
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 16px;
-  letter-spacing: 0;
-  text-align: center;
-}
-.letter{
-  text-align: center;
-}
-.start_time{
-  width: 169px;
-  height: 41px;
-  //margin-left: 40px;
-}
-//.MuiInputAdornment-standardEndAdornment{
-//  display: none;
-//}
-.customTextField {
-  width: 100%;
-  box-sizing: border-box;
-}
-.name_ru{
-  width: 356px;
-  height: 52px;
-  margin-top: 42px;
-}
-.name_ru_sevice{
-  width: 356px;
-  height: 52px;
-  margin-top: 29px;
-}
-.name_en{
-  width: 356px;
-  height: 52px;
-  margin-top: 29px;
-  box-sizing: border-box;
-}
-.error_text{
-  color:red;
-}
-.service{
-  height: 44px;
-  border-bottom: 1px solid #E0DEDE;
-  padding-left: 9px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-.dropdown_container{
-  width: 356px;
-  height: 314px;
-}
-li{
-  font-family: var(--font-roboto-regular);
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 16px;
-  letter-spacing: 0;
-  text-align: left;
-}
-.right_part{
-  width: 100%;
-  margin-left: 20px;
-}
-.right_time{
-  margin-left: 20px;
-}
-.time_container{
-  display: flex;
-  flex-direction: row;
-  //margin-top: 15px;
-}
-.name_be{
-  margin-top: 48px;
-  width: 356px;
-  height: 52px;
-}
-.dropdown_container_2{
-  background-color: white;
-  margin-top: 29px;
-}
-.added_services{
-  height: 324px;
-  margin-top: 29px;
-}
-.buttons_container{
-  width: 358px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-.search_container{
-  margin-top: 29px;
-}
-.left_time{
-  width: 169px;
-  height: 41px;
-}
-.added_service{
-  height: 44px;
-  border-bottom: 1px solid #E0DEDE;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.letter_container{
-  width: 169px;
-  height: 41px;
-  margin-left: 30px;
-}
-.first_row{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-  margin-top: 19px;
-}
-.radio_container_service{
-  width: 156px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-.time_service{
-  margin-top: 5px;
-}
-.be_service{
-  margin-top: 41px;
-}
-.services_buttons{
-  margin-top: 101px;
 }

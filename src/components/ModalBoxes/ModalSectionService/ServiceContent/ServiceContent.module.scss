@@ -1,0 +1,62 @@
+@import '../../../../styles/mixins';
+.service_content{
+  @include row-direction;
+}
+.first_row{
+  @include row-direction;
+  align-items: center;
+  width: 100%;
+  margin-top: 19px;
+}
+.radio_container{
+  width: 156px;
+  @include row-space-between;
+  align-items: center;
+}
+.radio{
+  width: 69px;
+  @include vertical-center;
+  justify-content: space-between;
+}
+.letter_container{
+  width: 169px;
+  height: 41px;
+  margin-left: 30px;
+}
+.letter{
+  text-align: center;
+}
+.name_ru, .name_en, .name_be{
+  width: 356px;
+  height: 52px;
+  box-sizing: border-box;
+}
+.name_ru{
+  margin-top: 29px;
+}
+.name_en{
+  margin-top: 29px;
+}
+.right_part{
+  width: 100%;
+  margin-left: 20px;
+}
+.time_container{
+  @include row-direction;
+  margin-top: 5px;
+}
+.left_time, .time{
+  width: 169px;
+  height: 41px;
+}
+.right_time{
+  margin-left: 20px;
+}
+.name_be{
+  margin-top: 41px;
+}
+.buttons_container{
+  width: 358px;
+  @include row-space-between;
+  margin-top: 101px;
+}

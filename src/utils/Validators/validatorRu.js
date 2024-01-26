@@ -12,7 +12,6 @@ export const validateInputRuName = (value) => {
 
     // Проверка на длину
     if (trimmedValue.length > 40) {
-         console.log(trimmedValue.length);
         const remainingSymbols = 50 - trimmedValue.length;
         if(remainingSymbols > 0){
             return {
