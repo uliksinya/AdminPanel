@@ -1,6 +1,5 @@
 import styles from './MenuButton.module.scss';
 export const MenuButton = ({content, isActive, onClick}) => {
-
     return (
         isActive
         ?

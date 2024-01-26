@@ -1,3 +1,4 @@
+@import "../../styles/mixins";
 .text {
   font-family: var(--font-bebas);
 }
@@ -6,15 +7,12 @@
   height: 87px;
   border-top: 1px solid #F1EFEF;
   border-bottom: 1px solid #F1EFEF;
-  display: flex;
-  flex-direction: row;
+  @include row-space-between;
   align-items: center;
-  justify-content: space-between;
   background-color: white;
 }
 .datetime{
-  display: flex;
-  align-items: center;
+  @include vertical-center;
 }
 .header span{
   font-family: var(--font-inter);
@@ -31,8 +29,7 @@
   margin-left: 30px;
 }
 .admin{
-  display: flex;
-  flex-direction: column;
+  @include column-direction;
   align-items: center;
   margin-right: 47px;
 }

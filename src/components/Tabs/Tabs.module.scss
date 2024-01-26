@@ -1,8 +1,7 @@
+@import "../../styles/mixins";
 .tabs{
-  display: flex;
-  flex-direction: row;
+  @include row-space-between;
   width: 200px;
-  justify-content: space-between;
   margin-left: 18px;
 }
 .tab{

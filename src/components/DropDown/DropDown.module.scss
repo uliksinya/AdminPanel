@@ -4,7 +4,6 @@
   position: relative;
 }
 .controller{
-  //position: relative;
   height: 52px;
   border: 1px solid #E0DEDE;
   border-radius: 6px 6px 6px 6px;
@@ -40,7 +39,14 @@
   padding: 0 10px;
   top: 52px;
   background-color: white;
+  overflow-y: scroll;
   z-index: 99;
+}
+.menu::-webkit-scrollbar {
+  width: 2px;
+}
+.menu::-webkit-scrollbar-thumb {
+  background-color: #aeadad;
 }
 .image{
   position: absolute;

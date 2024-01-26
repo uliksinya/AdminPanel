@@ -1,11 +1,9 @@
+@import "../../styles/mixins";
 .content_header{
-  //width: 96.6%;
   height: 82px;
   background-color: white;
   margin-bottom: 12px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  @include row-space-between;
   align-items: center;
 }
 .content_header h2{

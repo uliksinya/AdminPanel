@@ -51,7 +51,7 @@ h2{
   align-items: center;
   justify-content: space-between;
 }
-#radio{
+.radio{
   width: 69px;
   display: flex;
   align-items: center;
@@ -63,6 +63,9 @@ h2{
   font-weight: 400;
   line-height: 16px;
   letter-spacing: 0;
+  text-align: center;
+}
+.letter{
   text-align: center;
 }
 .start_time{
@@ -102,6 +105,7 @@ h2{
   padding-left: 9px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .dropdown_container{
   width: 356px;
@@ -162,7 +166,7 @@ li{
   flex-direction: row;
   justify-content: space-between;
 }
-.letter{
+.letter_container{
   width: 169px;
   height: 41px;
   margin-left: 30px;

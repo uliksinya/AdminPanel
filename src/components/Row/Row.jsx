@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./Row.module.scss";
-
 export const Row = ({ id, rowObj, activeRow, onClick }) => {
     const createRow = (activeRow, index, value) => {
         return (
@@ -15,7 +14,6 @@ export const Row = ({ id, rowObj, activeRow, onClick }) => {
                 if (index !== 0) {
                     return createRow(activeRow, index, rowObj[key]);
                 }
-                return null;
             })}
         </tr>
     );

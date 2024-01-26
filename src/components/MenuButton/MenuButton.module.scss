@@ -1,7 +1,7 @@
+@import "../../styles/mixins";
 .menu_button{
   border: none;
-  display: flex;
-  align-items: center;
+  @include vertical-center;
   width: 90.1%;
   min-height: 60px;
   background: none;

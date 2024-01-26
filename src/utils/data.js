@@ -29,4 +29,8 @@ export const sections=[
     {id: 3, section: 'Раздел 3'},
     {id: 4, section: 'Раздел 4'},
     {id: 5, section: 'Раздел 5'},
+    {id: 6, section: 'Раздел 6'},
+    {id: 7, section: 'Раздел 7'},
+    {id: 8, section: 'Раздел 8'},
+    {id: 9, section: 'Раздел 9'},
 ]

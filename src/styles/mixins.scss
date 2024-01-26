@@ -11,3 +11,16 @@
   display: flex;
   align-items: center;
 }
+@mixin row-direction{
+  display: flex;
+  flex-direction: row;
+}
+@mixin column-direction{
+  display: flex;
+  flex-direction: column;
+}
+@mixin row-space-between{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

@@ -1,13 +1,12 @@
 import {useState} from "react";
-import  styles from './Tabs.module.scss'
+import styles from './Tabs.module.scss'
 
 export const Tabs = () => {
     const [activeTab, setActiveTab] = useState("Все");
     const handleButtonClick = (content) => {
         setActiveTab(content);
-        console.log("Clicked on:", content);
     };
-    return(
+    return (
         <div className={styles.tabs}>
             <div
                 className={activeTab === "Все" ? `${styles.tab} ${styles.active}` : styles.tab}
@@ -22,7 +21,7 @@ export const Tabs = () => {
                 Разделы
             </div>
             <div
-                className={activeTab === "Услуги" ?`${styles.tab} ${styles.active}` : styles.tab}
+                className={activeTab === "Услуги" ? `${styles.tab} ${styles.active}` : styles.tab}
                 onClick={() => handleButtonClick("Услуги")}
             >
                 Услуги

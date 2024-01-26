@@ -5,7 +5,6 @@
   background-color: #F4FCFF;
   position: relative;
 }
-
 .main_container{
   width: 96.6%;
   padding-top: 10px;
@@ -23,7 +22,6 @@ table {
   font-size: 14px;
   font-weight: 400;
   text-align: left;
-
   display: grid;
   border-collapse: collapse;
   min-width: 100%;
@@ -91,7 +89,7 @@ th:last-child {
 .name_be, .name_en{
   padding-left: 16px;
 }
-.letter, .start_end{
+.letter_container, .start_end{
   padding: 0 12px;
 }
 .active_state{
@@ -104,12 +102,10 @@ th:last-child {
   width: 100%;
   height: 61px;
   border-top: 1px solid #E0DEDE;
-  font-family: var(--font-inter);
 
+  font-family: var(--font-inter);
   padding-right: 235px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  @include flex-center;
 }
 .left_arr{
   margin-left: 15px;
@@ -127,14 +123,6 @@ th:last-child {
   }
   table{
     grid-template-columns: 306px 60px 60px 180px 180px 95px 123px 94px;
-    //minmax(306px, 1fr)
-    //minmax(60px, 1fr)
-    //minmax(60px, 1fr)
-    //minmax(180px, 1fr)
-    //minmax(180px, 1fr)
-    //minmax(95px, 1fr)
-    //minmax(123px, 1fr)
-    //minmax(94px, 1fr)
   }
   .main_container_footer{
     padding-right: 15px;

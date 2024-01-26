@@ -1,3 +1,4 @@
+@import '../../styles/mixins';
 .sidebar{
     width: 14.8%;
     height: 1080px;
@@ -12,8 +13,7 @@
 }
 .system_queue{
     margin-left: 29px;
-    display: flex;
-    flex-direction: row;
+    @include row-direction;
     align-items: center;
     margin-top: 38px;
 }
@@ -38,8 +38,7 @@ li{
     list-style-type: none;
 }
 .menu_footer{
-    display: flex;
-    flex-direction: column;
+    @include column-direction;
     margin-top: 313px;
     position: absolute;
     bottom: 32px;
@@ -60,9 +59,8 @@ li{
     height: 24px;
 }
 .menu_footer_folder{
-    display: flex;
+    @include vertical-center;
     flex-direction: row;
-    align-items: center;
 }
 @media (max-width: 1620px) {
     .system_queue {

@@ -8,11 +8,10 @@ import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 export const SideBar = () => {
     const [activeButton, setActiveButton] = useState("Разделы и услуги");
-
+    const navigate = useNavigate();
     const handleButtonClick = (content) => {
         setActiveButton(content);
     };
-    const navigate = useNavigate();
     const redirectToPostPage = (section) => {
         navigate(`${section}`);
     };
