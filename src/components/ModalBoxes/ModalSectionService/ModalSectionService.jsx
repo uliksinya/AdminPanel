@@ -2,7 +2,6 @@ import styles from './ModalSectionService.module.scss'
 import {useState} from "react";
 import {SectionContent} from "./SectionContent/SectionContent.jsx";
 import {ServiceContent} from "./ServiceContent/ServiceContent.jsx";
-
 export const ModalSectionService = ({active, setActive, name}) => {
     const [selectedValue, setSelectedValue] = useState('chapter');
 

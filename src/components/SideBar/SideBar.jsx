@@ -7,7 +7,7 @@ import {MenuButton} from "../MenuButton/MenuButton.jsx";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 export const SideBar = () => {
-    const [activeButton, setActiveButton] = useState("Разделы и услуги");
+    const [activeButton, setActiveButton] = useState("Категории и услуги");
     const navigate = useNavigate();
     const handleButtonClick = (content) => {
         setActiveButton(content);
@@ -29,11 +29,11 @@ export const SideBar = () => {
             <ul className={styles.menu}>
                 <li>
                     <MenuButton
-                        content="Разделы и услуги"
-                        isActive={activeButton === "Разделы и услуги"}
+                        content="Категории и услуги"
+                        isActive={activeButton === "Категории и услуги"}
                         onClick={() => {
                             redirectToPostPage('/section-services');
-                            handleButtonClick('Разделы и услуги');
+                            handleButtonClick('Категории и услуги');
                         }}
                     />
                 </li>

@@ -33,7 +33,6 @@ export const SectionContent = ({selectedValue, handleRadioChange, setActiveModal
             value: ''
         }
     })
-
     const handleInputChange = (value, language) => {
         // const value = e.target.value;
         switch (language) {
@@ -79,16 +78,12 @@ export const SectionContent = ({selectedValue, handleRadioChange, setActiveModal
             }
         }));
     };
-
-
     const handleSearchInput = (e) => {
         handleSearchInputChange(e, 'inputSearch');
     }
-
     const handleClearInput = () => {
         handleSearchInputChange({target: {value: ''}}, 'inputSearch');
     }
-
 
     return (
         <div className={styles.chapter_content}>

@@ -5,6 +5,7 @@
   margin-bottom: 12px;
   @include row-space-between;
   align-items: center;
+  position: relative;
 }
 .content_header h2{
   font-family: var(--font-inter);
@@ -14,9 +15,17 @@
   letter-spacing: 0;
   text-align: left;
   color: #5AA2DC;
-  margin-left: 18px;
-  margin-top: 6px;
 }
 .btn_container{
   margin-right: 16px;
 }
+.name_container{
+  position: absolute;
+  top: 12px;
+  left: 16px;
+}
+.tabs_container{
+  position: absolute;
+  bottom: 0;
+}
+

@@ -1,0 +1,61 @@
+@import "../../../styles/mixins";
+.modal{
+  height: 100%;
+  width: 100%;
+  background-color: rgba(198, 198, 198, 0.3);
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s;
+  z-index: 9;
+  @include flex-center;
+}
+.modal.active{
+  opacity: 1;
+  pointer-events: all;
+}
+.modal_container{
+  width: 837px;
+  height: 662px;
+  background-color: white;
+  padding: 26px 66px 47px 48px;
+}
+.radio{
+  display: flex;
+  flex-direction: row;
+}
+.radio_container input{
+  width: 14px;
+  height: 14px;
+}
+.radio_container > div:not(:first-child) {
+  margin-left: 16px;
+}
+.radio_container{
+  display: flex;
+  flex-direction: row;
+  margin-top: 24px;
+}
+.radio label{
+  margin-left: 10px;
+}
+.workplace_container{
+  height: 40px;
+  margin-top: 23px;
+}
+.num_tab_container{
+  width: 95px;
+  height: 40px;
+}
+.ip_for_tab_container{
+  width: 169px;
+  height: 40px;
+  margin-left: 20px;
+}
+.inp_container{
+  display: flex;
+  flex-direction: row;
+  margin-top: 25px;
+}

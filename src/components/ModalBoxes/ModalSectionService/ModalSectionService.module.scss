@@ -12,6 +12,15 @@
   z-index: 9;
   @include flex-center;
 }
+h2{
+  font-family: var(--font-roboto-bold);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 23px;
+  letter-spacing: 0;
+  text-align: left;
+  color: #404040;
+}
 .modal.active{
   opacity: 1;
   pointer-events: all;
